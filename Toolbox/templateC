@@ -1,0 +1,9 @@
+#!/bin/sh
+cat <<'EOF' >main.c
+#include <unistd.h>
+
+int	main(void)
+{
+
+}
+EOF

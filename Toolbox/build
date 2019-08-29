@@ -1,7 +1,15 @@
 #!/bin/sh
-[ -d obj ] || mkdir obj
+if [ $# -eq 0 ] ; then
+	echo "No target directory supplied"
+	exit
+fi
 src=$(find $1/*.c | cut -c 6- | sed 's/.\{2\}$//')
+[ -d obj ] || mkdir obj
+if [ ! -f main.c ] ; then
+	if [ $1 = "ex00" ] ; then
+		ft_putchar
+	fi
+fi
 gcc -Wall -c $1/$src.c -o obj/$src.o
 gcc -Wall -c main.c -o obj/main.o 
 gcc -Wall -o runme obj/*.o
-
