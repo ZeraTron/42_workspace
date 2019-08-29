@@ -1,4 +1,0 @@
-#!/bin/sh
-find runme -print -exec rm {} \; 2>/dev/null
-find obj/*.o -print -exec rm {} \; 2>/dev/null
-find main.c -print -exec rm {} \; 2>/dev/null
