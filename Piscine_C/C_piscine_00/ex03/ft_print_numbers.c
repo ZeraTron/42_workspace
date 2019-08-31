@@ -28,3 +28,8 @@ void	ft_print_numbers(void)
 		n++;
 	}
 }
+
+int main(void)
+{
+	ft_print_numbers();
+}
