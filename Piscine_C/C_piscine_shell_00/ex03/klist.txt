@@ -1,5 +1,0 @@
-Credentials cache: API:C768E47D-B993-486A-B85C-E4EBD04D3864
-        Principal: kdubois@42.FR
-
-  Issued                Expires               Principal
-Aug 26 10:26:15 2019  Sep  2 10:26:07 2019  krbtgt/42.FR@42.FR
