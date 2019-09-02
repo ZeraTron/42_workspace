@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:39:35 by kdubois           #+#    #+#             */
-/*   Updated: 2019/08/31 20:07:06 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/02 15:57:50 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int n)
+void	ft_putnbr(int nb)
 {
 	unsigned int	nbr;
 
-	if (n < 0)
+	if (nb < 0)
 	{
 		ft_putchar('-');
-		nbr = n * -1;
+		nbr = nb * -1;
 	}
 	else
-		nbr = n;
+		nbr = nb;
 	if (nbr >= 10)
 		ft_putnbr(nbr / 10);
 	ft_putchar(nbr % 10 + 48);

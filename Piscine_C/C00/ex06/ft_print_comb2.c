@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 11:31:07 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/01 03:16:56 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/02 15:57:16 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_print_comb2(void)
 	while (i <= 99)
 	{
 		x = i + 1;
-		while (o <= 99)
+		while (x <= 99)
 		{
 			printer(i);
 			ft_putchar(' ');
