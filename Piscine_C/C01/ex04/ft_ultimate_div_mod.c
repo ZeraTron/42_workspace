@@ -1,5 +1,14 @@
-#include <unistd.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ultimate_div_mod.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/03 15:37:06 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/03 21:13:54 by kdubois          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 void	ft_ultimate_div_mod(int *a, int *b)
 {
@@ -9,22 +18,6 @@ void	ft_ultimate_div_mod(int *a, int *b)
 	{
 		tmp = *a;
 		*a = *a / *b;
-		*b = *a % *b;
+		*b = tmp % *b;
 	}
-}
-
-int	main(void)
-{
-	int	div_;
-	int	mod_;
-	int *alpha;
-	int *beta;
-
-	div_=24;
-	mod_=2;
-	alpha=&div_;
-	beta=&mod_;
-	printf("div_: %d | mod_: %d | *alpha: %d | *beta: %d \n", div_, mod_, *alpha, *beta);
-	ft_ultimate_div_mod(alpha, beta);
-	printf("div_: %d | mod_: %d | *alpha: %d | *beta: %d \n", div_, mod_, *alpha, *beta);
 }

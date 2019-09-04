@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kdubois <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/03 15:26:50 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/03 21:14:11 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/04 14:59:13 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/04 14:59:16 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+int	ft_str_is_numeric(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		i++;
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (0);
 	}
-	return (i);
+	return (1);
 }

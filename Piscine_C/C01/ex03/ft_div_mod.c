@@ -1,5 +1,14 @@
-#include <unistd.h>
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_div_mod.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/03 15:25:24 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/03 21:13:46 by kdubois          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 void	ft_div_mod(int a, int b, int *div, int *mod)
 {
@@ -8,18 +17,4 @@ void	ft_div_mod(int a, int b, int *div, int *mod)
 		*div = a / b;
 		*mod = a % b;
 	}
-}
-
-int	main(void)
-{
-	static int	div_;
-	static int	mod_;
-	int *alpha;
-	int *beta;
-
-	alpha=&div_;
-	beta=&mod_;
-	printf("div_: %d | mod_: %d | *alpha: %d | *beta: %d \n", div_, mod_, *alpha, *beta);
-	ft_div_mod(30, 5, alpha, beta);
-	printf("div_: %d | mod_: %d | *alpha: %d | *beta: %d \n", div_, mod_, *alpha, *beta);
 }

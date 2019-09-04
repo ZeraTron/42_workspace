@@ -6,11 +6,9 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:39:26 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/02 11:44:50 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/04 14:58:38 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 char	*ft_strcpy(char *dest, char *src)
 {

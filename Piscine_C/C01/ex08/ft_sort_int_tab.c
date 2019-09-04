@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kdubois <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/03 15:26:50 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/03 21:14:11 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/04 13:27:22 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/04 13:27:31 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	int	i;
+	int i;
+	int j;
+	int k;
 
 	i = 0;
-	while (str[i])
+	while (i < size)
 	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (tab[i] > tab[j])
+			{
+				k = tab[i];
+				tab[i] = tab[j];
+				tab[j] = k;
+			}
+			j++;
+		}
 		i++;
 	}
-	return (i);
 }
