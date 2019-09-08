@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/01 19:58:33 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/08 14:10:08 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/08 14:18:42 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned	int	ft_strlcpy(char *dest, char *src, unsigned	int size)
+int		ft_strlen(char *str)
 {
-	const	char	*s;
-	char			*d;
-	char			*e;
+	int i;
 
-	s = src;
-	d = dest;
-	e = dest + size;
-	while (*s != '\0' && d < e)
-		*d++ = *s++;
-	if (d < e)
-		*d = 0;
-	else if (size > 0)
-		d[-1] = 0;
-	while (*s != '\0')
-		s++;
-	return (s - src);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
+
+char	*ft_strstr(char *str, char *to_find)
+{
+	char *begin;
+	char *pattern;
+
+	while (*str)
+	{
+		begin = str;
+		pattern = to_find;
+		while (*str && *pattern && *str == *pattern)
+		{
+			str++;
+			pattern++;
+		}
+		if (!*pattern)
+			return (begin);
+		str = begin + 1;
+	}
+	return ;
 }

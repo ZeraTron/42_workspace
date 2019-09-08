@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/01 19:58:33 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/08 14:10:08 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/08 00:20:27 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/08 00:20:49 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned	int	ft_strlcpy(char *dest, char *src, unsigned	int size)
-{
-	const	char	*s;
-	char			*d;
-	char			*e;
+#include <unistd.h>
 
-	s = src;
-	d = dest;
-	e = dest + size;
-	while (*s != '\0' && d < e)
-		*d++ = *s++;
-	if (d < e)
-		*d = 0;
-	else if (size > 0)
-		d[-1] = 0;
-	while (*s != '\0')
-		s++;
-	return (s - src);
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putnbr(int nb)
+{
+	unsigned int	nbr;
+
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nbr = nb * -1;
+	}
+	else
+		nbr = nb;
+	if (nbr >= 10)
+		ft_putnbr(nbr / 10);
+	ft_putchar(nbr % 10 + 48);
 }

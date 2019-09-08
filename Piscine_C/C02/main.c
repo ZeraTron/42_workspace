@@ -1,8 +1,0 @@
-void	*ft_print_memory(void *addr, unsigned int size);
-
-int	main(void)
-{
-	char string[] = "lire la memoire c'est cool, on peut faire pleinsde trucs super !! ";
-
-	ft_print_memory(string, sizeof(string));
-}
