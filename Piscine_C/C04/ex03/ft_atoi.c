@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_input.c                                   :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 12:50:48 by pbouet            #+#    #+#             */
-/*   Updated: 2019/09/11 11:07:25 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/09 16:48:06 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/09 17:08:27 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_char_valid(char *c, int pos)
+int	ft_atoi(char *str)
 {
-	int		cond1;
-	int		cond2;
+	int i;
+	int x;
+	int res;
 
-	cond1 = (((*c >= '1') && *c <= '4') && (pos % 2 == 0));
-	cond2 = ((*c == ' ') && (pos % 2 == 1));
-	return (cond1 || cond2);
-}
-
-int	ft_check_input(char *str)
-{
-	int		cpt;
-	char	c;
-
-	cpt = 0;
-	while ((str) && cpt < 31)
+	i = 0;
+	res = 0;
+	while (str[i] == ' ')
+		i++;
+	while (str[i] == '-' || str[i] == '+')
 	{
-		c = str[cpt];
-		if (!(ft_char_valid(&c, cpt)))
-			return (0);
-		cpt++;
+		if (str[i] == '-')
+			x++;
+		i++;
 	}
-	if (str[cpt])
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		return (0);
+		res = (10 * res) + str[i] - '0';
+		i++;
 	}
-	return (1);
+	if (x % 2 == 1)
+		return (-res);
+	return (res);
 }

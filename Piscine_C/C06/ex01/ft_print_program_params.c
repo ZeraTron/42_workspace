@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_input.c                                   :+:      :+:    :+:   */
+/*   ft_print_program_params.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 12:50:48 by pbouet            #+#    #+#             */
-/*   Updated: 2019/09/11 11:07:25 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/12 17:16:38 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/12 17:34:21 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_char_valid(char *c, int pos)
+#include <unistd.h>
+
+int	main(int argc, char **argv)
 {
-	int		cond1;
-	int		cond2;
+	int i;
+	int x;
+	char nl;
 
-	cond1 = (((*c >= '1') && *c <= '4') && (pos % 2 == 0));
-	cond2 = ((*c == ' ') && (pos % 2 == 1));
-	return (cond1 || cond2);
-}
-
-int	ft_check_input(char *str)
-{
-	int		cpt;
-	char	c;
-
-	cpt = 0;
-	while ((str) && cpt < 31)
-	{
-		c = str[cpt];
-		if (!(ft_char_valid(&c, cpt)))
-			return (0);
-		cpt++;
-	}
-	if (str[cpt])
-	{
+	if (argc < 1)
 		return (0);
+	i = 1;
+	x = 0;
+	nl = '\n';
+	while (argv[i])
+	{
+		while (argv[i][x])
+		{
+			x++;
+		}
+		write(1, argv[i], x);
+		write(1, &nl, 1);
+		i++;
 	}
-	return (1);
+	return (0);
 }
