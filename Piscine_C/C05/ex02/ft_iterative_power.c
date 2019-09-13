@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rev_params.c                                    :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 17:16:38 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/12 19:51:25 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/13 17:17:05 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/13 17:32:18 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+int ft_iterative_power(int nb)
 {
 	int i;
-	int x;
-	char nl;
+	unsigned int nbr;
 
-	if (argc < 2)
+	if (nb < 0)
 		return (0);
-	i = argc-1;
-	x = 0;
-	nl = '\n';
-	while (argv[i])
+	i = 1;
+	nbr = nb;
+	while (i < nb)
 	{
-		if (i == 0)
-			return (0);
-		while (argv[i][x])
-			x++;
-		write(1, argv[i], x);
-		write(1, &nl, 1);
-		i--;
+		nbr = nbr * i;
+		i++;
 	}
-	return (0);
+	return (nbr);
+}
+
+int main(void)
+{
+	int dee = ft_iterative_power(5);
+	printf("%d\n", dee);
 }

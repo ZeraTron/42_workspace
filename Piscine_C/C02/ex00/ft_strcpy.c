@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/01 16:39:26 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/04 14:58:38 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/13 12:16:05 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ char	*ft_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 		++i;
 	}
+	dest[i] = '\0';
 	return (dest);
 }
