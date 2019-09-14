@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/08 14:18:42 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/14 03:41:30 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*ft_strstr(char *str, char *to_find)
 	char *begin;
 	char *pattern;
 
+	if (!*str)
+		return (0);
 	while (*str)
 	{
 		begin = str;
@@ -38,5 +40,5 @@ char	*ft_strstr(char *str, char *to_find)
 			return (begin);
 		str = begin + 1;
 	}
-	return ;
+	return (0);
 }

@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kdubois <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/14 01:35:25 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/03 15:26:39 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/03 15:37:36 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcat(char *dest, char *src)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
 	int i;
-	int x;
 
 	i = 0;
-	x = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[x] != '\0')
+	while (str[i])
 	{
-		dest[i] = src[x];
 		i++;
-		x++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	write(1, str, i);
 }
