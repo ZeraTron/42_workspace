@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaraguen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/08 12:21:03 by zaraguen          #+#    #+#             */
-/*   Updated: 2019/09/09 21:43:02 by zaraguen         ###   ########.fr       */
+/*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/14 01:30:46 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int nb)
+int	ft_strcmp(char *s1, char *s2)
 {
-	long int i;
+	int	i;
 
 	i = 0;
-	while (i * i < nb)
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
-	if (i * i == nb)
-		return (i);
-	else
-		return (0);
+	return (s1[i] - s2[i]);
 }

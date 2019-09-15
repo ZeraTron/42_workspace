@@ -1,24 +1,21 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zaraguen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/05 20:18:52 by zaraguen          #+#    #+#             */
+/*   Updated: 2019/09/09 16:27:17 by zaraguen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_recursive_factorial(int nb)
+int		ft_recursive_factorial(int nb)
 {
-	const int i;
-	unsigned int nbr;
-
-	i = 0;
-
 	if (nb < 0)
 		return (0);
-	nbr = nb;
-	while (i < nb)
-	{
-		ft_recursive_factorial(nbr);
-	}
-	return (nbr);
-}
-
-int main(void)
-{
-	int dee = ft_recursive_factorial(6);
-	printf("%d\n", dee);
+	if (nb == 0)
+		return (1);
+	else
+		return (nb * ft_recursive_factorial(nb - 1));
 }

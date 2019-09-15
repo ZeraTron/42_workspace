@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaraguen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdubois <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/08 12:21:03 by zaraguen          #+#    #+#             */
-/*   Updated: 2019/09/09 21:43:02 by zaraguen         ###   ########.fr       */
+/*   Created: 2019/09/03 15:26:39 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/03 15:37:36 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int nb)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
-	long int i;
+	int i;
 
 	i = 0;
-	while (i * i < nb)
+	while (str[i])
+	{
 		i++;
-	if (i * i == nb)
-		return (i);
-	else
-		return (0);
+	}
+	write(1, str, i);
 }

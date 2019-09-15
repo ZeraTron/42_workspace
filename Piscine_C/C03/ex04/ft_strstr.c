@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/14 03:41:30 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/15 21:26:59 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,28 @@ int		ft_strlen(char *str)
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	char *begin;
-	char *pattern;
+	int i;
+	int j;
+	int size_f;
 
-	if (!*str)
-		return (0);
-	while (*str)
+	i = 0;
+	if (to_find[i] == '\0')
 	{
-		begin = str;
-		pattern = to_find;
-		while (*str && *pattern && *str == *pattern)
+		return (str);
+	}
+	size_f = ft_strlen(to_find);
+	while (str[i] != '\0')
+	{
+		j = 0;
+		while (to_find[j] == str[i + j])
 		{
-			str++;
-			pattern++;
+			if (j == size_f - 1)
+			{
+				return (str + i);
+			}
+			j++;
 		}
-		if (!*pattern)
-			return (begin);
-		str = begin + 1;
+		i++;
 	}
 	return (0);
 }

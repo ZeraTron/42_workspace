@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaraguen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/08 12:21:03 by zaraguen          #+#    #+#             */
-/*   Updated: 2019/09/09 21:43:02 by zaraguen         ###   ########.fr       */
+/*   Created: 2019/09/03 15:25:13 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/03 21:13:37 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_sqrt(int nb)
+void	ft_swap(int *a, int *b)
 {
-	long int i;
+	int tmp;
 
-	i = 0;
-	while (i * i < nb)
-		i++;
-	if (i * i == nb)
-		return (i);
-	else
-		return (0);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
