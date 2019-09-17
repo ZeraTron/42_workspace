@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 16:48:06 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 17:49:04 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/17 15:19:52 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/17 16:23:00 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(char *str)
+#include <stdlib.h>
+
+int		ft_ultimate_range(int **range, int min, int max)
 {
 	int i;
-	int x;
-	int res;
+	int *tab;
 
+	if (min >= max)
+	{
+		*range = (void *)0;
+		return (0);
+	}
+	tab = (int*)malloc(sizeof(*tab) * (max - min));
 	i = 0;
-	x = 0;
-	res = 0;
-	while (str[i] == '\t' || str[i] == '\v' || str[i] == '\n' || \
-		str[i] == ' ' || str[i] == '\r' || str[i] == '\f')
-		i++;
-	while (str[i] == '-' || str[i] == '+')
+	while (min < max)
 	{
-		if (str[i] == '-')
-			x++;
+		tab[i] = min;
 		i++;
+		min++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = (10 * res) + str[i] - '0';
-		i++;
-	}
-	if (x % 2 == 1)
-		return (-res);
-	return (res);
+	*range = tab;
+	return (i);
 }

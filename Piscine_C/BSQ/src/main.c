@@ -5,16 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 12:50:32 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/16 13:45:23 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/16 14:31:51 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/17 20:54:47 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
+#include "../header/bsq.h"
 
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-	if (ac < 2)
+	if (argc != 2)
 		return (0);
-	parseMap(av[1]);
+	//int **map = create_map(4, 4);
+	read_map(argv[1]);
 }

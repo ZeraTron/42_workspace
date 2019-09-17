@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/16 23:41:52 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/16 14:30:56 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/17 21:08:49 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int a;
+#include "../header/bsq.h"
 
-	a = 0;
-	if (n == 0)
-		return (0);
-	while ((s1[a] == s2[a]) && (s1[a] && s2[a]) && (a < n - 1))
-	{
-		a++;
-	}
-	return (s1[a] - s2[a]);
+// int **create_map(int m, int n)
+// {
+//     int* values = malloc(n * sizeof(int) * m);
+//     int** rows = malloc(n * sizeof(int*));
+//     for (int i=0; i<n; ++i)
+//     {
+//         rows[i] = 
+//     }
+//     return rows;
+// }
+
+void destroy_map(int **arr)
+{
+    free(*arr);
+    free(arr);
 }

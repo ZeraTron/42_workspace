@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/07 23:44:42 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/16 23:41:52 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/17 12:03:10 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/17 12:10:25 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int a;
+#include <stdlib.h>
 
-	a = 0;
-	if (n == 0)
-		return (0);
-	while ((s1[a] == s2[a]) && (s1[a] && s2[a]) && (a < n - 1))
-	{
-		a++;
-	}
-	return (s1[a] - s2[a]);
+char	*ft_strdup(char *src)
+{
+	char	*str;
+	char	*p;
+	int		len;
+
+	len = 0;
+	while (src[len])
+		len++;
+	str = malloc(len + 1);
+	p = str;
+	while (*src)
+		*p++ = *src++;
+	*p = '\0';
+	return (str);
 }

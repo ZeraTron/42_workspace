@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 09:41:27 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/15 09:46:56 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/17 16:14:44 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		check_base(char c, int base)
 	(c >= 'a' && c <= ('a' + base - 10)));
 }
 
-int		ft_atoi_base(const char *str, int base)
+int		ft_atoi_base(const char *str, char *base)
 {
 	int		i;
 	int		nbr;
@@ -45,4 +45,32 @@ int		ft_atoi_base(const char *str, int base)
 		i += 1;
 	}
 	return (nbr * sign);
+}
+
+int		main(void)
+{
+	printf("==== 21 ft_atoi_base ====\n");
+	printf("Tesing ex21\n");
+	printf("Should return 0 in case of invalid arguments\n");
+	printf("%d\n", ft_atoi_base("15", ""));
+	printf("%d\n", ft_atoi_base("15", "1"));
+	printf("%d\n", ft_atoi_base("15", "144"));
+	printf("%d\n", ft_atoi_base("15", "14+35"));
+	printf("%d\n", ft_atoi_base("15", "145-09"));
+	printf("%d\n", ft_atoi_base("", "14509"));
+	printf("%d\n", ft_atoi_base("x15", "14509"));
+	printf("Should print number in correct radix\n");
+	printf("%d\n", ft_atoi_base("+1111", "01"));
+	printf("%d\n", ft_atoi_base("+15", "0123456789"));
+	printf("%d\n", ft_atoi_base("+F", "0123456789ABCDEF"));
+	printf("%d\n", ft_atoi_base("+vi", "fivte3n"));
+	printf("%d\n", ft_atoi_base("+84", "9876543210"));
+	printf("Should handle negative numbers\n");
+	printf("%d\n", ft_atoi_base("-1111", "01"));
+	printf("%d\n", ft_atoi_base("-15", "0123456789"));
+	printf("%d\n", ft_atoi_base("-F", "0123456789ABCDEF"));
+	printf("%d\n", ft_atoi_base("-vi", "fivte3n"));
+	printf("%d\n", ft_atoi_base("-84", "9876543210"));
+	printf("All tests passed for ex21\n");
+	return (0);
 }
