@@ -5,33 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 17:16:38 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/12 19:51:25 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 12:01:32 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 12:01:36 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	main(int argc, char **argv)
+void	ft_putstr(char *str)
 {
 	int i;
-	int x;
-	char nl;
 
-	if (argc < 2)
-		return (0);
-	i = argc-1;
-	x = 0;
-	nl = '\n';
-	while (argv[i])
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (i == 0)
-			return (0);
-		while (argv[i][x])
-			x++;
-		write(1, argv[i], x);
-		write(1, &nl, 1);
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+}
+
+int		main(int argc, char *argv[])
+{
+	int i;
+
+	i = argc - 1;
+	while (i > 0)
+	{
+		ft_putstr(argv[i]);
 		i--;
 	}
-	return (0);
 }

@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_program_params.c                          :+:      :+:    :+:   */
+/*   ft_print_params.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 17:16:38 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/12 17:34:21 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 12:01:39 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 12:01:41 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-int	main(int argc, char **argv)
+void	ft_putstr(char *str)
 {
 	int i;
-	int x;
-	char nl;
 
-	if (argc < 1)
-		return (0);
-	i = 1;
-	x = 0;
-	nl = '\n';
-	while (argv[i])
+	i = 0;
+	while (str[i] != '\0')
 	{
-		while (argv[i][x])
-		{
-			x++;
-		}
-		write(1, argv[i], x);
-		write(1, &nl, 1);
+		write(1, &str[i], 1);
 		i++;
 	}
-	return (0);
+	write(1, "\n", 1);
+}
+
+int		main(int argc, char *argv[])
+{
+	int i;
+
+	i = 1;
+	while (i < argc)
+	{
+		ft_putstr(argv[i]);
+		i++;
+	}
 }

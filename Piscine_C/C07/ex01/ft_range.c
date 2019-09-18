@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 12:11:02 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 12:18:23 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 11:20:28 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 11:20:30 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 int		*ft_range(int min, int max)
 {
-	int *tab;
-	int i;
+	int *a;
+	int b;
 
 	if (min >= max)
 		return (NULL);
-	tab = (int*)malloc(sizeof(*tab) * (max - min));
-	i = 0;
-	while (min < max)
-	{
-		tab[i] = min;
-		i++;
-		min++;
-	}
-	return (tab);
+	if (max - min - 1)
+		max = max - 1;
+	b = -1;
+	a = malloc(sizeof(int) * (max - min));
+	while (++b <= max - min)
+		a[b] = b + min;
+	return (a);
 }

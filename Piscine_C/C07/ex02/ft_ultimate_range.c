@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 15:19:52 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 16:23:00 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 11:20:21 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 11:20:23 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,14 @@
 int		ft_ultimate_range(int **range, int min, int max)
 {
 	int i;
-	int *tab;
 
+	*range = NULL;
+	i = -1;
 	if (min >= max)
-	{
-		*range = (void *)0;
 		return (0);
-	}
-	tab = (int*)malloc(sizeof(*tab) * (max - min));
-	i = 0;
-	while (min < max)
-	{
-		tab[i] = min;
-		i++;
-		min++;
-	}
-	*range = tab;
+	if ((*range = (int*)malloc(sizeof(int) * (max - min))) == NULL)
+		return (0);
+	while (++i < (max - min))
+		(*range)[i] = i + min;
 	return (i);
 }

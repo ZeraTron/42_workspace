@@ -5,67 +5,77 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 17:16:38 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/12 18:34:53 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 12:01:53 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 12:01:55 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
+void	ft_putstr(char *str)
 {
-	write(1, &c, 1);
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
 }
 
 int		ft_strcmp(char *s1, char *s2)
 {
-	unsigned int	i;
+	int i;
 
 	i = 0;
-	while (s1[i] != '\0' && s2[i] != '\0')
+	while (s1[i] || s2[i])
 	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
+		if (s1[i] > s2[i])
+			return (1);
+		if (s1[i] < s2[i])
+			return (-1);
 		i++;
 	}
-	if ((s1[i] == '\0' && s2[i] != '\0') || (s2[i] == '\0' && s1[i] != '\0'))
-		return (s1[i] - s2[i]);
 	return (0);
 }
 
-void	print_args(int argc, char **argv)
+void	sort(int ac, char **av)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*temp;
 
-	i = 0;
-	while (i++ < argc - 1)
+	i = 1;
+	j = 0;
+	while (j == 0 && i < ac)
 	{
-		j = 0;
-		while (argv[i][j] != '\0')
+		i = 1;
+		j = 1;
+		while (i < ac - 1)
 		{
-			ft_putchar(argv[i][j]);
-			j++;
+			if (ft_strcmp(av[i], av[i + 1]) > 0)
+			{
+				temp = av[i];
+				av[i] = av[i + 1];
+				av[i + 1] = temp;
+				j = 0;
+			}
+			i++;
 		}
-		ft_putchar('\n');
 	}
 }
 
-int		main(int argc, char **argv)
+int		main(int ac, char **av)
 {
-	int	i;
+	int		i;
 
-	i = 0;
-	while (i++ < (argc - 1))
+	i = 1;
+	sort(ac, av);
+	while (i < ac)
 	{
-		if (i + 1 < argc && ft_strcmp(argv[i + 1], argv[i]) < 0)
-		{
-			argv[argc + 1] = argv[i];
-			argv[i] = argv[i + 1];
-			argv[i + 1] = argv[argc + 1];
-			i = 0;
-		}
+		ft_putstr(av[i]);
+		i++;
 	}
-	print_args(argc, argv);
-	return (0);
 }

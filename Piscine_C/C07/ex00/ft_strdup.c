@@ -5,26 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/17 12:03:10 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 12:10:25 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 11:20:35 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 11:20:36 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char	*ft_strdup(char *src)
+char		*ft_strdup(char *src)
 {
+	int		i;
 	char	*str;
-	char	*p;
-	int		len;
 
-	len = 0;
-	while (src[len])
-		len++;
-	str = malloc(len + 1);
-	p = str;
-	while (*src)
-		*p++ = *src++;
-	*p = '\0';
+	i = 0;
+	while (src[i])
+		i++;
+	str = ((char*)malloc(sizeof(char) * (i + 1)));
+	i = 0;
+	while (src[i])
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
 	return (str);
 }
