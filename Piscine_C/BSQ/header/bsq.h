@@ -6,7 +6,7 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:08:44 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 20:58:02 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/18 05:11:46 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,18 @@
 # define BSQ_H
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 
-#define BUF_SIZE	4096
+#define BUF_SIZE	2000
+
+typedef struct			s_map
+{
+	unsigned int		len;
+	char				*content;
+}						t_map;
 
 typedef struct			s_grid
 {
@@ -43,11 +50,6 @@ typedef struct			s_coord
 	struct s_coord		*next;
 }						t_coord;
 
-void destroy_map(int **arr);
-int **create_map(int m, int n);
-int		read_map(char *map);
-//int		read_stdin(void);
-
-t_grid		create_struct_grid(void);
+char	*open_file(char *file);
 
 #endif

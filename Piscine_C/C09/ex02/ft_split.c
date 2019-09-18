@@ -5,92 +5,95 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/15 18:41:58 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 20:39:08 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/18 11:20:46 by kdubois           #+#    #+#             */
+/*   Updated: 2019/09/18 11:38:58 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int            diviseur(char c, char *charset)
+int			ft_is_charset(char *str, char to_find)
 {
 	int i;
+
 	i = 0;
-	while (charset[i])
+	while (str[i] != '\0')
 	{
-		if (charset[i++] == c)
+		if (str[i] == to_find)
 			return (1);
+		i++;
 	}
 	return (0);
 }
 
-int            next_word(char *str, char *charset)
+char		*ft_strcpy(char *dest, char *src, int start, int stop)
 {
 	int i;
-	i = 0;
-	while (str[i])
-	{
-		if (diviseur(str[i], charset))
-			return (i);
-		i++;
-	}
-	return (i - 1);
-}
 
-int            c_w(char *str, char *charset)
-{
-	int count;
-	int i;
-	int b;
-	count = 0;
 	i = 0;
-	while (str[i])
+	while (start + i < stop)
 	{
-		b = 0;
-		if (!diviseur(str[i], charset))
-		{
-			i = i + next_word(str + i, charset);
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-void        copy(char *dest, char *src, int length)
-{
-	int i;
-	i = 0;
-	while (src[i] && i < length)
-	{
-		dest[i] = src[i];
+		dest[i] = src[start + i];
 		i++;
 	}
 	dest[i] = '\0';
-	return ;
+	return (dest);
 }
 
-
-char        **ft_split(char *str, char *charset)
+int			ft_size(char *str, char *charset)
 {
-	char    **tmp;
-	int        i;
-	int        c;
-	int        last;
-	c = 0;
-	i = -1;
-	if ((tmp = (char**)malloc(sizeof(char*) * (c_w(str, charset) + 1))) == NULL)
+	int i;
+	int size_tab;
+
+	i = 0;
+	size_tab = 0;
+	while (str[i])
+	{
+		if (!ft_is_charset(charset, str[i]))
+			size_tab++;
+		while (!ft_is_charset(charset, str[i]) && str[i])
+			i++;
+		while (ft_is_charset(charset, str[i]) && str[i])
+			i++;
+	}
+	return (size_tab);
+}
+
+char		**ft_init_tab(int size)
+{
+	char	**tab;
+
+	if (!(tab = malloc(sizeof(char *) * (size + 1))))
 		return (NULL);
-	while (str[++i])
-		if (!diviseur(str[i], charset))
+	tab[size] = NULL;
+	return (tab);
+}
+
+char		**ft_split(char *str, char *charset)
+{
+	int		i;
+	int		k;
+	int		len;
+	char	**tab;
+
+	i = 0;
+	k = 0;
+	tab = ft_init_tab(ft_size(str, charset));
+	while (str[i])
+	{
+		len = 0;
+		while (!ft_is_charset(charset, str[i + len]) && str[i + len])
+			len++;
+		if (len)
 		{
-			last = i;
-			i += next_word(str + i, charset);
-			if ((tmp[c] = (char*)malloc(sizeof(char) * (i - last + 1))) == NULL)
+			if (!(tab[k] = (char*)malloc(sizeof(char) * (len + 1))))
 				return (NULL);
-			copy(tmp[c++], str + last, i - last + \
-					(diviseur(str[last + (i - last)], charset) ? 0 : 1));
+			tab[k] = ft_strcpy(tab[k], str, i, i + len);
+			k++;
 		}
-	tmp[c] = 0;
-	return (tmp);
+		while (ft_is_charset(charset, str[i + len]))
+			i++;
+		i = i + len;
+	}
+	return (tab);
 }

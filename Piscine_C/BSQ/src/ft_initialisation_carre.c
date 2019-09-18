@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input.c                                            :+:      :+:    :+:   */
+/*   ft_initialisation_carre.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 14:33:14 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/18 05:47:57 by kdubois          ###   ########.fr       */
+/*   Created: 2019/09/17 00:12:53 by bkany             #+#    #+#             */
+/*   Updated: 2019/09/18 03:46:59 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bsq.h"
 
-char	*open_file(char *file)
+// Initialisation du carre
+void	ft_initialisation_carre(int **tab_int, int max_col, int max_lin)
 {
-	int fd;
-	int count;
-	char buf;
-	char *full;
+	int i;
+	int j;
 
-	fd = open(file, O_RDONLY);
-	if (fd > 0)
+	i = 0;
+	j = 0;
+	while (i < max_col)
 	{
-		count = 0;
-		while (read(fd, &buf, 1) == 1)
-			count++;
-		full = malloc(sizeof(char*) * (count + 1));
-		count = 0;
-		while (read(fd, &buf, 1) == 1)
-			full[count++] = buf;
-		full[count] = '\0';
-		close(fd);
-		return (full);
+		if (tab_int[0][i] != 0)
+			tab_int[0][i] = 1;
+		i++;
 	}
-	return (0);
+	while (j < max_lin)
+	{
+		if (tab_int[j][0] != 0)
+			tab_int[j][0] = 1;
+		j++;
+	}
 }
