@@ -10,20 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_case_max(int **tab, int max_col, int max_lin)
+#include "../header/bsq.h"
+
+int		ft_case_max(int **tab, t_grid *map)
 {
-	int i;
-	int j;
+	unsigned int i;
+	unsigned int j;
 	int max;
 
 	i = 0;
-	j = 0;
+	j = 1;
 	max = 0;
-	while (j < max_lin)
+	while (j < map->y + 1)
 	{
-		while (i < max_col - 1)
+		while (i < map->x)
 		{
-			if (tab[j][i] > tab[j][i+1])
+			if (tab[j][i] > max)
 			{
 				max = tab[j][i];
 			}
@@ -35,29 +37,30 @@ int		ft_case_max(int **tab, int max_col, int max_lin)
 	return (max);
 }
 
-
-t_point		ft_case_max2(int **tab, int max_col, int max_lin)
+t_coord		ft_case_max2(int **tab, t_grid *map)
 {
-	int i;
-	int j;
-	int max;
+	unsigned int i;
+	unsigned int j;
+	t_coord	s_max;	
 
 	i = 0;
-	j = 0;
-	while (j < max_lin)
+	j = 1;
+	while (j < map->y+1)
 	{
-		while (i < max_col)
+		while (i < map->x)
 		{
-		if (tab[j][i] == max)
-		{
-			return // la case en question
+			if (tab[j][i] == ft_case_max(tab, map))
+			{
+				s_max.x = i;
+				s_max.y = j;
+				return (s_max);
+			}
+			i++;
 		}
-		i++;
-		}
-	j++;
-	i = 0;
+		j++;
+		i = 0;
 	}
-
-	return (-1);
+	s_max.y = 0;
+	s_max.x= 0;
+	return (s_max);
 }
-

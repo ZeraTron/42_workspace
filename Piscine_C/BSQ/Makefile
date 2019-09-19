@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+         #
+#    By: bkany <bkany@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/16 11:21:55 by kdubois           #+#    #+#              #
-#    Updated: 2019/09/18 03:57:52 by kdubois          ###   ########.fr        #
+#    Updated: 2019/09/18 20:49:10 by bkany            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,21 @@ NAME	=	BSQ
 
 SRC		=	./src/main.c\
 			./src/input.c\
+			./src/map.c\
+			./src/libft.c\
+			./src/ft_init_square.c\
+			./src/ft_fill_square.c\
+			./src/ft_case_max.c\
+			./src/rebuild_char_map.c
 
 OBJ		= 	./main.o\
 			./input.o\
+			./map.o\
+			./libft.o\
+			./ft_init_square.o\
+			./ft_fill_square.o\
+			./ft_case_max.o\
+			./rebuild_char_map.o
 
 CFLAGS 	=	-Wall -Wextra -Werror
 

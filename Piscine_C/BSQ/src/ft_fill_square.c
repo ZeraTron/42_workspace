@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../header/bsq.h"
+
 int		ft_min(int a, int b, int c)
 {
 	int tmp;
@@ -24,24 +26,23 @@ int		ft_min(int a, int b, int c)
 		return (c);
 }
 
-void	ft_remplissqge_carre2(char **tab, int max_col, int max_lin)
+void	ft_fill_square(int **tab, t_grid *map)
 {
-	int i;
-	int j;
+	unsigned int i;
+	unsigned int j;
 
-	i = 0;
-	j = 0;
-// ATTENTION TAILLE DU TABLEAU SUR MAX COL ET MAX LIN
-	while (j < max_lin && j > 0)
+	i = 1;
+	j = 2;
+	while (j < map->y + 1 && j > 1)
 	{
-		while (i < max_col && i > 0)
+		while (i < map->x && i > 0)
 		{
-			tab[j][i] = ft_min(tab[j - 1][i], tab[j][i - 1], 
+			if (tab[j][i] != 0)
+				tab[j][i] = ft_min(tab[j - 1][i], tab[j][i - 1], 
 					tab[j - 1][i - 1]) + 1;
 			i++;
 		}
-	j++;
-	i = 0;
+		i = 1;
+		j++;
 	}
-
 }

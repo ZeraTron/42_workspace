@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bsq.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
+/*   By: bkany <bkany@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 13:08:44 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/18 05:11:46 by kdubois          ###   ########.fr       */
+<<<<<<< HEAD
+/*   Updated: 2019/09/18 22:22:17 by kdubois          ###   ########.fr       */
+=======
+/*   Updated: 2019/09/18 20:51:34 by bkany            ###   ########.fr       */
+>>>>>>> 27772be3a31287db50882a2f0f52d4385750e517
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +23,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-#define BUF_SIZE	2000
-
-typedef struct			s_map
-{
-	unsigned int		len;
-	char				*content;
-}						t_map;
-
 typedef struct			s_grid
 {
 	unsigned int		x;
@@ -36,20 +32,36 @@ typedef struct			s_grid
 	unsigned char		char_square;
 }						t_grid;
 
+typedef struct			s_coord
+{
+	unsigned int		x;
+	unsigned int		y;
+}						t_coord;
+
 typedef struct			s_square
 {
 	unsigned int		len;
 	struct s_coord		*node;
 }						t_square;
 
-typedef struct			s_coord
-{
-	unsigned int		x;
-	unsigned int		y;
-	unsigned char		content;
-	struct s_coord		*next;
-}						t_coord;
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+
+t_grid 	init_map_struct(char *str);
+int		**malloc_bin_map(t_grid *map);
+int 	**build_binary_map(char *str, t_grid *map);
+void 	bin_display(int **bin_map, t_grid *map);
 
 char	*open_file(char *file);
+void 	get_charset(char *str, t_grid *map);
+int 	get_current_char(char c, t_grid *map);
+
+void	ft_init_square(int **tab_int, t_grid *map);
+void	ft_fill_square(int **tab, t_grid *map);
+int		ft_case_max(int **tab, t_grid *map);
+t_coord		ft_case_max2(int **tab, t_grid *map);
+char    **rebuild_char_map(int **bin_map, t_grid *map);
+
 
 #endif
