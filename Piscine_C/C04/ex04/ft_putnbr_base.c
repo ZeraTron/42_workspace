@@ -6,69 +6,80 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 17:09:55 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 16:18:17 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/19 11:19:19 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <stdio.h>
 
-void	ft_putchar(char c)
+void			ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-int		check_base(char *base)
+int				base_error(char *base)
 {
-	int	i;
-	int	z;
+	int i;
+	int j;
 
 	i = 0;
-	z = 0;
-	if (base[0] == '\0' || base[1] == '\0')
+	if (*base == '\0' || *(base + 1) == '\0')
 		return (0);
-	while (base[i])
+	while (*(base + i))
 	{
-		z = i + 1;
-		if (base[i] == '+' || base[i] == '-')
+		j = i + 1;
+		if (*(base + i) == '+' || *(base + i) == '-')
 			return (0);
-		if (base[i] < 32 || base[i] > 126)
-			return (0);
-		while (base[z])
+		while (*(base + j))
 		{
-			if (base[i] == base[z])
+			if (*(base + i) == *(base + j))
 				return (0);
-			z++;
+			j++;
 		}
 		i++;
 	}
 	return (1);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+unsigned int	ft_check_nbr(int nbr, unsigned int nombre, char *base)
 {
-	int	size_base;
-	int	nbr_final[100];
-	int	i;
+	if (nbr == 0)
+	{
+		ft_putchar(*base);
+		return (0);
+	}
+	if (nbr < 0)
+	{
+		nombre = -nbr;
+		ft_putchar('-');
+	}
+	else
+		nombre = nbr;
+	return (nombre);
+}
+
+void			ft_putnbr_base(int nbr, char *base)
+{
+	unsigned int	nombre;
+	int				size;
+	int				nb_final[100];
+	int				i;
 
 	i = 0;
-	size_base = 0;
-	if (check_base(base))
+	size = 0;
+	nombre = 0;
+	if (base_error(base))
 	{
-		if (nbr < 0)
+		nombre = ft_check_nbr(nbr, nombre, base);
+		while (*(base + size))
+			size++;
+		while (nombre != 0)
 		{
-			nbr = -nbr;
-			ft_putchar('-');
-		}
-		while (base[size_base])
-			size_base++;
-		while (nbr)
-		{
-			nbr_final[i] = nbr % size_base;
-			nbr = nbr / size_base;
-			i++;
+			*(nb_final + i) = nombre % size;
+			nombre = nombre / size;
+			++i;
 		}
 		while (--i >= 0)
-			ft_putchar(base[nbr_final[i]]);
+			ft_putchar(*(base + *(nb_final + i)));
 	}
 }

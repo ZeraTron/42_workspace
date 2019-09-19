@@ -6,103 +6,96 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 18:53:02 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 12:00:58 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/19 10:43:33 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define N 10
+#include <unistd.h>
 
-void	print_solution(int board[N][N])
+void	print(int tab[10][10])
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	c;
 
 	i = 0;
-	j = 0;
-	while (i < N)
+	while (i < 10)
 	{
-		while (j < N)
+		j = 0;
+		while (j < 10)
 		{
-			write(1, board[i][j]);
+			if (tab[j][i])
+			{
+				c = '0' + j;
+				write(1, &c, 1);
+			}
 			j++;
 		}
 		i++;
 	}
+	write(1, "\n", 1);
 }
 
-int		is_safe(int board[N][N], int row, int col)
+int		check(int tab[10][10], int x, int y)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	j = 0;
-	while (i < col)
-	{
-		if (board[row][i])
+	while (i < x)
+		if (tab[i++][y])
 			return (0);
-		i++;
-	}
-	i = row;
-	j = col;
-	while (i >= 0 && j >= 0)
-	{
-		if (board[i][j])
+	i = x;
+	j = y;
+	while (j >= 0 && i >= 0)
+		if (tab[i--][j--])
 			return (0);
-		i--;
-		j--;
-	}
-	i = row;
-	j = col;
-	while (j >= 0 && i < N)
-	{
-		if (board[i][j])
+	i = x;
+	j = y;
+	while (i >= 0 && j < 10)
+		if (tab[i--][j++])
 			return (0);
-		i++;
-		j--;
-	}
 	return (1);
 }
 
-int		solve_nq_util(int board[N][N], int col)
+int		backtrack(int tab[10][10], int x, int y, int *nbr)
 {
-	int i;
-
-	i = 0;
-	if (col >= N)
-		return (1);
-	while (i < N)
+	if (x >= 10)
 	{
-		if (is_safe(board, i, col))
+		print(tab);
+		*nbr = *nbr + 1;
+	}
+	while (y < 10)
+	{
+		if (check(tab, x, y))
 		{
-			board[i][col] = 1;
-			if (solveNQUtil(board, col + 1))
-				return (1);
-			board[i][col] = 0;
+			tab[x][y] = 1;
+			backtrack(tab, x + 1, 0, nbr);
+			tab[x][y] = 0;
 		}
-		i++;
+		y++;
 	}
 	return (0);
 }
 
-int		solve_nq(void)
+int		ft_ten_queens_puzzle(void)
 {
-	int board[N][N] = { { 0, 0, 0, 0 },
-						{ 0, 0, 0, 0 },
-						{ 0, 0, 0, 0 },
-						{ 0, 0, 0, 0 } };
+	int	tab[10][10];
+	int	nbr;
+	int	b;
 
-	if (solve_nq_util(board, 0) == (0))
+	nbr = 0;
+	while (nbr < 10)
 	{
-		return (0);
+		b = 0;
+		while (b < 10)
+		{
+			tab[nbr][b] = 0;
+			b++;
+		}
+		nbr++;
 	}
-
-	print_solution(board);
-	return (1);
-}
-
-int		main(void)
-{
-	solve_nq();
-	return (0);
+	nbr = 0;
+	backtrack(tab, 0, 0, &nbr);
+	return (nbr);
 }

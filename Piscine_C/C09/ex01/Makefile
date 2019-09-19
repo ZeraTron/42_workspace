@@ -6,36 +6,28 @@
 #    By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/14 17:05:49 by kdubois           #+#    #+#              #
-#    Updated: 2019/09/14 17:20:12 by kdubois          ###   ########.fr        #
+#    Updated: 2019/09/19 11:11:00 by kdubois          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libft.a
+SRCS	= ft_putchar.c ft_swap.c ft_putstr.c ft_strlen.c ft_strcmp.c
 
-SRC	=	srcs/ft_putchar.c \
-			srcs/ft_swap.c \
-			srcs/ft_putstr.c \
-			srcs/ft_strlen.c \
-			srcs/ft_strcmp.c
+OBJS	= $(addprefix srcs/, ${SRCS:.c=.o})
 
-OBJ = ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
+NAME	= libft.a
 
-HEADER	=	includes/ft.h
+.c.o:
+		gcc -Wall -Wextra -Werror -c -I./includes $< -o ${<:.c=.o}
 
-CFLAGS 	=	-Wall -Wextra -Werror
+${NAME}:	${OBJS}
+		ar rc $@ $^
 
-OPTION = -c -I $(HEADER)
-
-all: $(NAME)
-
-$(NAME): 
-		gcc $(CFLAGS) $(OPTION) $(SRC)
-		ar rcs $(NAME) $(OBJ)
+all:	${NAME}
 
 clean:
-		rm -f $(OBJ)
+		rm -f ${OBJS}
 
-fclean: clean
-		rm -f $(NAME)
+fclean:		clean
+		rm -f ${NAME}
 
-re: fclean all
+re:			fclean all

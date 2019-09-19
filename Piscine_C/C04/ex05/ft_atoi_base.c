@@ -6,71 +6,98 @@
 /*   By: kdubois <kdubois@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/15 09:41:27 by kdubois           #+#    #+#             */
-/*   Updated: 2019/09/17 16:14:44 by kdubois          ###   ########.fr       */
+/*   Updated: 2019/09/19 09:56:55 by kdubois          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		check_base(char c, int base)
+int		checkbase(char *base)
 {
-	if (base <= 10)
-		return (c >= '0' && c <= '9');
-	return ((c >= '0' && c <= '9') || (c >= 'A' && c <= ('A' + base - 10)) || \
-	(c >= 'a' && c <= ('a' + base - 10)));
+	int	i;
+	int len;
+
+	len = 0;
+	while (base[len])
+	{
+		i = len + 1;
+		if (base[len] == '-' || base[len] == '+' || base[len] <= 32 ||
+			base[len] == 127)
+			return (0);
+		while (base[i])
+			if (base[i++] == base[len])
+				return (0);
+		len++;
+	}
+	return (len);
 }
 
-int		ft_atoi_base(const char *str, char *base)
+int		ft_pow(int n, int p)
+{
+	int i;
+	int res;
+
+	i = 0;
+	res = 1;
+	while (i < p)
+	{
+		res = res * n;
+		i++;
+	}
+	return (res);
+}
+
+int		inbase(char c, char *base)
 {
 	int		i;
-	int		nbr;
-	int		sign;
 
-	if (!str[0] || (base < 2 || base > 16))
-		return (0);
-	nbr = 0;
-	sign = 1;
-	while (str[i] == '\t' || str[i] == '\v' || str[i] == '\n' || \
-		str[i] == ' ' || str[i] == '\r' || str[i] == '\f')
-		i += 1;
-	if (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			sign *= -1;
-	while (str[i] && check_base(str[i], base))
-	{
-		if (str[i] >= 'A' && 'F' >= str[i])
-			nbr = (nbr * base) + (str[i] - 'A' + 10);
-		else if (str[i] >= 'a' && 'f' >= str[i])
-			nbr = (nbr * base) + (str[i] - 'a' + 10);
-		else
-			nbr = (nbr * base) + (str[i] - '0');
-		i += 1;
-	}
-	return (nbr * sign);
+	i = 0;
+	while (base[i] != c && base[i])
+		i++;
+	if (base[i] == '\0')
+		return (-1);
+	return (i);
 }
 
-int		main(void)
+int		getstart_n_sign(char *str)
 {
-	printf("==== 21 ft_atoi_base ====\n");
-	printf("Tesing ex21\n");
-	printf("Should return 0 in case of invalid arguments\n");
-	printf("%d\n", ft_atoi_base("15", ""));
-	printf("%d\n", ft_atoi_base("15", "1"));
-	printf("%d\n", ft_atoi_base("15", "144"));
-	printf("%d\n", ft_atoi_base("15", "14+35"));
-	printf("%d\n", ft_atoi_base("15", "145-09"));
-	printf("%d\n", ft_atoi_base("", "14509"));
-	printf("%d\n", ft_atoi_base("x15", "14509"));
-	printf("Should print number in correct radix\n");
-	printf("%d\n", ft_atoi_base("+1111", "01"));
-	printf("%d\n", ft_atoi_base("+15", "0123456789"));
-	printf("%d\n", ft_atoi_base("+F", "0123456789ABCDEF"));
-	printf("%d\n", ft_atoi_base("+vi", "fivte3n"));
-	printf("%d\n", ft_atoi_base("+84", "9876543210"));
-	printf("Should handle negative numbers\n");
-	printf("%d\n", ft_atoi_base("-1111", "01"));
-	printf("%d\n", ft_atoi_base("-15", "0123456789"));
-	printf("%d\n", ft_atoi_base("-F", "0123456789ABCDEF"));
-	printf("%d\n", ft_atoi_base("-vi", "fivte3n"));
-	printf("%d\n", ft_atoi_base("-84", "9876543210"));
-	printf("All tests passed for ex21\n");
-	return (0);
+	int		i;
+	int		sign;
+
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	return (i * sign);
+}
+
+int		ft_atoi_base(char *str, char *base)
+{
+	int	i;
+	int	n;
+	int	l;
+	int	r;
+	int	s;
+
+	i = getstart_n_sign(str);
+	s = (i >= 0 ? 1 : -1);
+	i = i * s;
+	s = i * s;
+	l = 0;
+	while (inbase(str[l + i], base) >= 0)
+		l++;
+	r = 0;
+	n = checkbase(base);
+	if (n < 2)
+		return (0);
+	while (inbase(str[i], base) >= 0)
+	{
+		r += inbase(str[i], base) * ft_pow(n, l - (i - (s >= 0 ? s : -s)) - 1);
+		i++;
+	}
+	return (r * (s >= 0 ? 1 : -1));
 }
